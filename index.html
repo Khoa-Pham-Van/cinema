@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CINEMAX - Tour Ảo 360° Rạp Chiếu Phim</title>
+    <title>CGV - Virtual Tour</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
     <style>
         * {
             margin: 0;
@@ -48,7 +46,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #ffd700;
+            color: #e12615;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -82,14 +80,14 @@
         }
 
         .nav-btn.active {
-            background: #ffd700;
-            color: #000;
-            border-color: #ffd700;
+            background: #e12615;
+            color: #fff;
+            border-color: #e12615;
         }
 
         .nav-btn:hover {
             transform: translateY(-2px);
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(225, 38, 21, 0.2);
         }
 
         /* Home Page */
@@ -99,8 +97,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), 
-                        url('https://images.unsplash.com/photo-1489599809505-fb4491af8a29?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                url('https://images.unsplash.com/photo-1489599809505-fb4491af8a29?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             border-radius: 15px;
@@ -115,7 +113,7 @@
         .hero-title {
             font-size: 3rem;
             font-weight: bold;
-            color: #ffd700;
+            color: #e12615;
             margin-bottom: 15px;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
@@ -128,8 +126,8 @@
         }
 
         .cta-button {
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #000;
+            background: linear-gradient(45deg, #e12615, #ff4d3a);
+            color: #fff;
             border: none;
             padding: 12px 35px;
             border-radius: 30px;
@@ -145,7 +143,7 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 10px 25px rgba(225, 38, 21, 0.4);
         }
 
         /* Features Grid */
@@ -156,7 +154,7 @@
         .section-title {
             text-align: center;
             font-size: 2.2rem;
-            color: #ffd700;
+            color: #e12615;
             margin-bottom: 40px;
         }
 
@@ -177,13 +175,13 @@
 
         .feature-card:hover {
             transform: translateY(-8px);
-            background: rgba(255, 215, 0, 0.1);
-            border-color: rgba(255, 215, 0, 0.3);
+            background: rgba(225, 38, 21, 0.1);
+            border-color: rgba(225, 38, 21, 0.3);
         }
 
         .feature-icon {
             font-size: 2.5rem;
-            color: #ffd700;
+            color: #e12615;
             margin-bottom: 15px;
         }
 
@@ -199,15 +197,15 @@
             font-size: 0.95rem;
         }
 
-        /* Viewer Section - LỚN HƠN */
-        .viewer-section {
+        /* Video Section */
+        .video-section {
             margin: 15px auto;
             max-width: 99%;
         }
 
-        #panorama-container {
+        .video-container {
             width: 100%;
-            height: 80vh; /* CAO HƠN */
+            height: 80vh;
             position: relative;
             border-radius: 15px;
             overflow: hidden;
@@ -215,13 +213,53 @@
             background: #000;
         }
 
-        .pnlm-render-container {
-            image-rendering: -webkit-optimize-contrast !important;
-            image-rendering: crisp-edges !important;
+        .background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
         }
 
-        .pnlm-container {
-            border-radius: 15px !important;
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .video-btn {
+            background: rgba(225, 38, 21, 0.8);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .video-btn:hover {
+            background: #e12615;
+            transform: scale(1.1);
         }
 
         .loading {
@@ -229,18 +267,18 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: #ffd700;
+            color: #e12615;
             text-align: center;
             z-index: 100;
             background: rgba(0, 0, 0, 0.8);
             padding: 25px;
             border-radius: 15px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(225, 38, 21, 0.3);
         }
 
         .spinner {
-            border: 3px solid rgba(255, 215, 0, 0.3);
-            border-top: 3px solid #ffd700;
+            border: 3px solid rgba(225, 38, 21, 0.3);
+            border-top: 3px solid #e12615;
             border-radius: 50%;
             width: 45px;
             height: 45px;
@@ -249,44 +287,42 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
-        .controls {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+        /* Scene Navigation */
+        .scene-nav {
             display: flex;
             gap: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 12px 20px;
-            border-radius: 50px;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
         }
 
-        .control-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: none;
+        .scene-btn {
+            background: rgba(255, 255, 255, 0.08);
             color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-weight: 500;
         }
 
-        .control-btn:hover {
-            background: #ffd700;
-            color: #000;
-            transform: scale(1.1);
+        .scene-btn.active {
+            background: #e12615;
+            border-color: #e12615;
+        }
+
+        .scene-btn:hover {
+            background: rgba(225, 38, 21, 0.3);
         }
 
         /* Info Panel */
@@ -301,7 +337,7 @@
         }
 
         .location-title {
-            color: #ffd700;
+            color: #e12615;
             font-size: 1.8rem;
             margin-bottom: 15px;
             text-align: center;
@@ -336,7 +372,7 @@
 
         .spec-value {
             font-size: 1.6rem;
-            color: #ffd700;
+            color: #e12615;
             font-weight: bold;
             margin-bottom: 5px;
         }
@@ -362,7 +398,7 @@
 
         .features-list li:before {
             content: "✓";
-            color: #ffd700;
+            color: #e12615;
             font-weight: bold;
             font-size: 1rem;
         }
@@ -377,7 +413,7 @@
         }
 
         .seating-title {
-            color: #ffd700;
+            color: #e12615;
             font-size: 1.4rem;
             margin-bottom: 20px;
             text-align: center;
@@ -429,12 +465,13 @@
         }
 
         .seat.selected {
-            background: #ffd700;
-            color: #000;
+            background: #e12615;
+            color: #fff;
         }
 
         .seat.vip {
-            background: #e74c3c;
+            background: #ffd700;
+            color: #000;
         }
 
         .seat.occupied {
@@ -482,16 +519,16 @@
         }
 
         .booking-section {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(225, 38, 21, 0.1);
             padding: 20px;
             border-radius: 12px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(225, 38, 21, 0.3);
             margin-top: 20px;
             text-align: center;
         }
 
         .booking-title {
-            color: #ffd700;
+            color: #e12615;
             margin-bottom: 12px;
             font-size: 1.2rem;
         }
@@ -518,13 +555,13 @@
         }
 
         .btn-primary {
-            background: linear-gradient(45deg, #ffd700, #ffed4e);
-            color: #000;
+            background: linear-gradient(45deg, #e12615, #ff4d3a);
+            color: #fff;
         }
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            box-shadow: 0 5px 15px rgba(225, 38, 21, 0.4);
         }
 
         .btn-secondary {
@@ -552,7 +589,7 @@
         }
 
         .footer-section h3 {
-            color: #ffd700;
+            color: #e12615;
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
@@ -573,7 +610,7 @@
         }
 
         .footer-links a:hover {
-            color: #ffd700;
+            color: #e12615;
         }
 
         .copyright {
@@ -583,6 +620,15 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.85rem;
+        }
+
+        /* Page transitions */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
         }
 
         /* Responsive */
@@ -605,19 +651,14 @@
                 font-size: 2rem;
             }
 
-            #panorama-container {
-                height: 65vh;
+            .video-container {
+                height: 60vh;
             }
 
-            .controls {
-                padding: 10px 15px;
-                bottom: 15px;
-            }
-
-            .control-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
+            .video-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
             }
 
             .specs-grid {
@@ -639,13 +680,102 @@
             }
         }
 
-        /* Page transitions */
-        .page {
-            display: none;
+        .cinema-locations .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
-        .page.active {
-            display: block;
+        .location-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .location-item:hover {
+            background: rgba(225, 38, 21, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(225, 38, 21, 0.3);
+        }
+
+        .location-item i {
+            color: #e12615;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .location-item div {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cinema-locations .locations-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cinema-locations .locations-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+
+        .cinema-locations .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .location-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .location-item:hover {
+            background: rgba(225, 38, 21, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(225, 38, 21, 0.3);
+        }
+
+        .location-item i {
+            color: #e12615;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .location-item div {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cinema-locations .locations-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cinema-locations .locations-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
         }
     </style>
 </head>
@@ -657,18 +787,18 @@
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-film"></i>
-                    CINEMAX 360°
+                    CGV
                 </div>
                 <div class="main-nav">
                     <a href="#home" class="nav-btn active" data-page="home">
-                        <i class="fas fa-home"></i>Trang Chủ
+                        <i class="fas fa-home"></i> HOME
                     </a>
                     <a href="#tour" class="nav-btn" data-page="tour">
-                        <i class="fas fa-vr-cardboard"></i>Tour 360°
+                        <i class="fas fa-vr-cardboard"></i> Virtual Tour
                     </a>
-                    <a href="#booking" class="nav-btn">
-                        <i class="fas fa-ticket-alt"></i>Đặt Vé
-                    </a>
+                    <!-- <a href="#booking" class="nav-btn">
+                        <i class="fas fa-ticket-alt"></i> Đặt Vé
+                    </a> -->
                 </div>
             </div>
         </div>
@@ -679,190 +809,142 @@
         <div class="container">
             <div class="home-section">
                 <div class="hero-content">
-                    <h1 class="hero-title">TRẢI NGHIỆM RẠP CHIẾU 360°</h1>
+                    <h1 class="hero-title">BEYOND CINEMA</h1>
                     <p class="hero-subtitle">
-                        Khám phá không gian rạp chiếu phim cao cấp với công nghệ tham quan ảo 360 độ. 
-                        Trải nghiệm từng góc nhìn chân thực như đang đứng trong rạp.
+                        Explore CGV's premium cinema with virtual tour. Experience every realistic perspective as
+                        if you were actually standing inside the theater.
                     </p>
                     <a href="#tour" class="cta-button" data-page="tour">
-                        <i class="fas fa-play-circle"></i>Bắt Đầu Tour Ảo
+                        <i class="fas fa-play-circle"></i> Start
                     </a>
                 </div>
             </div>
 
             <div class="features-section">
-                <h2 class="section-title">TẠI SAO CHỌN CINEMAX?</h2>
+                <h2 class="section-title">Why choose CGV?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-couch"></i>
+                            <i class="fa-solid fa-globe"></i>
                         </div>
-                        <h3 class="feature-title">Ghế Ngồi Cao Cấp</h3>
+                        <h3 class="feature-title">TECHNOLOGY</h3>
                         <p class="feature-desc">
-                            Ghế da êm ái với tính năng massage, sưởi ấm và điều chỉnh đa tư thế, mang đến trải nghiệm thoải mái tối đa
+                            The advanced integration of 3S (Screen, Sound, Seat) amplifies immersive cinematic
+                            experience
                         </p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-film"></i>
+                            <i class="fa-solid fa-layer-group"></i>
                         </div>
-                        <h3 class="feature-title">Công Nghệ 4K Laser</h3>
+                        <h3 class="feature-title">CONCEPT</h3>
                         <p class="feature-desc">
-                            Hình ảnh siêu nét với độ phân giải 4K và công nghệ chiếu Laser tiên tiến, màu sắc chân thực sống động
+                            Enjoy a world-class cinematic experience in our themed auditoriums featuring unique themes
                         </p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-volume-up"></i>
+                            <i class="fa-solid fa-wrench"></i>
                         </div>
-                        <h3 class="feature-title">Âm Thanh Dolby Atmos</h3>
+                        <h3 class="feature-title">SERVICE</h3>
                         <p class="feature-desc">
-                            Hệ thống âm thanh vòm 64 kênh cho trải nghiệm âm thanh đắm chìm, cảm nhận từng âm thanh nhỏ nhất
+                            Enjoy in-seat dining with a diverse, high-quality menu served by our professional staff
                         </p>
                     </div>
-                    <div class="feature-card">
+                    <!-- <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-concierge-bell"></i>
+                            <i class="fas fa-video"></i>
                         </div>
-                        <h3 class="feature-title">Dịch Vụ Cao Cấp</h3>
+                        <h3 class="feature-title">VIRTUAL EXPERIENCE</h3>
                         <p class="feature-desc">
-                            Phục vụ đồ ăn thức uống tận nơi với thực đơn đa dạng và chất lượng, nhân viên chuyên nghiệp
+                            Immerse yourself in our cinema spaces with interactive video tours that bring the CGV
+                            experience to life
                         </p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Tour 360° Page -->
+    <!-- Tour Page -->
     <div id="tour" class="page">
         <div class="container">
-            <div class="header">
-                <div class="container">
-                    <div class="nav">
-                        <button class="nav-btn active" data-scene="lobby">
-                            <i class="fas fa-door-open"></i>Sảnh Chính
-                        </button>
-                        <button class="nav-btn" data-scene="cinema1">
-                            <i class="fas fa-film"></i>Phòng Chiếu 1
-                        </button>
-                        <button class="nav-btn" data-scene="cinema2">
-                            <i class="fas fa-film"></i>Phòng Chiếu 2
-                        </button>
-                        <button class="nav-btn" data-scene="vip">
-                            <i class="fas fa-crown"></i>Phòng VIP
-                        </button>
-                        <button class="nav-btn" data-scene="cafe">
-                            <i class="fas fa-coffee"></i>Quán Cafe
-                        </button>
-                    </div>
-                </div>
+            <div class="scene-nav">
+                <button class="scene-btn active" data-scene="lobby">
+                    <i class="fas fa-door-open"></i> Main
+                </button>
+                <button class="scene-btn" data-scene="cinema1">
+                    <i class="fas fa-film"></i> IMAX
+                </button>
+                <button class="scene-btn" data-scene="cinema2">
+                    <i class="fas fa-film"></i> ULTRA 4DX
+                </button>
+                <button class="scene-btn" data-scene="vip">
+                    <i class="fas fa-crown"></i> L’amour
+                </button>
             </div>
 
-            <div class="viewer-section">
-                <div id="panorama-container">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Đang tải trải nghiệm 360°...</p>
+            <div class="video-section">
+                <div class="video-container">
+                    <video class="background-video" id="background-video" autoplay muted loop>
+                        <source src="https://storage.googleapis.com/coverr-main/mp4/Coverr-Lulu.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-overlay">
+                        <div class="loading" id="video-loading">
+                            <div class="spinner"></div>
+                            <p>Loading video...</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="controls">
-                    <button class="control-btn" id="reset-view" title="Đặt lại góc nhìn">
-                        <i class="fas fa-crosshairs"></i>
-                    </button>
-                    <button class="control-btn" id="fullscreen" title="Toàn màn hình">
-                        <i class="fas fa-expand"></i>
-                    </button>
+                    <div class="video-controls">
+                        <button class="video-btn" id="fullscreen-btn" title="Full Screen">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div class="info-panel">
                 <h2 class="location-title" id="current-location">
-                    <i class="fas fa-door-open"></i>Sảnh Chính Rạp Chiếu Phim
+                    <i class="fas fa-door-open"></i> CGV Main Lobby
                 </h2>
                 <p class="location-desc" id="location-desc">
-                    Không gian sảnh chính sang trọng với thiết kế hiện đại, là nơi đón tiếp khách hàng trước khi bước vào các phòng chiếu. Sảnh chính được thiết kế với concept Hollywood cổ điển kết hợp công nghệ hiện đại, tạo ấn tượng ngay từ cái nhìn đầu tiên.
+                    Welcome to CGV's spectacular main lobby featuring modern architectural design and premium amenities.
+                    Experience the grand entrance with video that showcases our state-of-the-art facilities and
+                    welcoming atmosphere.
                 </p>
-                
-                <div class="specs-grid">
-                    <div class="spec-item">
-                        <div class="spec-value">200m²</div>
-                        <div class="spec-label">Diện Tích</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-value">5</div>
-                        <div class="spec-label">Quầy Dịch Vụ</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-value">50+</div>
-                        <div class="spec-label">Ghế Chờ</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-value">24/7</div>
-                        <div class="spec-label">Chiếu Sáng</div>
-                    </div>
+
+                <div class="specs-grid" id="specs-grid">
+                    <!-- Sẽ được tạo bằng JavaScript -->
                 </div>
 
-                <h3 style="color: #ffd700; margin: 20px 0 12px; text-align: center;">ĐẶC ĐIỂM NỔI BẬT</h3>
+                <h3 style="color: #e12615; margin: 20px 0 12px; text-align: center;">HIGHLIGHT</h3>
                 <ul class="features-list" id="features-list">
-                    <li>Sảnh chính rộng rãi với trần cao 5m, không gian thoáng đãng, thiết kế mở</li>
-                    <li>Quầy vé tự động hiện đại với 6 máy đặt vé nhanh, hỗ trợ nhiều ngôn ngữ</li>
-                    <li>Khu vực chờ với ghế sofa êm ái, phù hợp cho nhóm bạn và gia đình</li>
-                    <li>Quầy bắp nước với đa dạng đồ ăn thức uống cao cấp, phục vụ 24/7</li>
-                    <li>Hệ thống chiếu sáng LED tiết kiệm năng lượng, điều chỉnh ánh sáng thông minh</li>
-                    <li>Trang trí nội thất phong cách Hollywood sang trọng với hình ảnh các ngôi sao điện ảnh</li>
+                    <!-- Sẽ được tạo bằng JavaScript -->
                 </ul>
 
-                <!-- Sơ đồ ghế ngồi (chỉ hiển thị cho phòng chiếu) -->
+                <!-- Sơ đồ ghế ngồi -->
                 <div class="seating-plan" id="seating-plan" style="display: none;">
-                    <h3 class="seating-title">SƠ ĐỒ GHẾ NGỒI CHI TIẾT</h3>
-                    <div class="screen">MÀN HÌNH CHIẾU PHIM</div>
-                    <div class="seating-grid" id="seating-grid">
-                        <!-- Sẽ được tạo bằng JavaScript -->
-                    </div>
-                    <div class="seat-legend">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #2ecc71;"></div>
-                            <span>Ghế Thường</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #e74c3c;"></div>
-                            <span>Ghế VIP</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #9b59b6;"></div>
-                            <span>Ghế Đôi</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #3498db;"></div>
-                            <span>Ghế Wheelchair</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #ffd700;"></div>
-                            <span>Đã Chọn</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #7f8c8d;"></div>
-                            <span>Đã Đặt</span>
-                        </div>
-                    </div>
+                    <!-- Sẽ được tạo bằng JavaScript -->
                 </div>
 
                 <div class="booking-section">
-                    <h3 class="booking-title">ĐẶT VÉ TRẢI NGHIỆM</h3>
-                    <p style="margin-bottom: 15px; opacity: 0.9; font-size: 0.95rem;">
-                        Chọn ghế ngồi yêu thích và đặt vé ngay hôm nay để tận hưởng trải nghiệm điện ảnh đẳng cấp
+                    <h3 class="booking-title">BOOK NOW TO EXPERIENCE</h3>
+                    <p style="margin-bottom: 15px; opacity: 0.9; font-size: 0.95rem;" id="experience-text">
+                        Experience IMAX® at CGV:
                     </p>
+
+                    <!-- Cinema locations grid -->
+                    <div class="cinema-locations" id="cinema-locations" style="margin: 20px 0;">
+                        <!-- Sẽ được tạo bằng JavaScript -->
+                    </div>
+
                     <div class="btn-group">
                         <button class="btn btn-primary">
-                            <i class="fas fa-ticket-alt"></i>Đặt Vé Ngay
+                            <i class="fas fa-ticket-alt"></i> Book Now
                         </button>
                         <button class="btn btn-secondary">
-                            <i class="fas fa-calendar"></i>Xem Lịch Chiếu
-                        </button>
-                        <button class="btn btn-secondary">
-                            <i class="fas fa-map-marker-alt"></i>Chỉ Đường
+                            <i class="fas fa-calendar"></i> Movie Schedule
                         </button>
                     </div>
                 </div>
@@ -875,298 +957,154 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>CINEMAX 360°</h3>
+                    <h3>CGV CINEMAS</h3>
                     <p style="opacity: 0.8; font-size: 0.9rem; line-height: 1.5;">
-                        Hệ thống rạp chiếu phim cao cấp với công nghệ hiện đại và dịch vụ đẳng cấp. 
-                        Trải nghiệm điện ảnh tuyệt vời nhất.
+                        Enjoy the best cinematic experience at CGV theaters nationwide. Find all showtimes and the
+                        latest movie trailers for CGV Cinemas Vietnam here.
                     </p>
                 </div>
                 <div class="footer-section">
-                    <h3>Liên Hệ</h3>
+                    <h3>Customer Service</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Nguyễn Huệ, Q.1, TP.HCM</li>
-                        <li><i class="fas fa-phone"></i> (028) 3827 1234</li>
-                        <li><i class="fas fa-envelope"></i> info@cinemax.vn</li>
-                        <li><i class="fas fa-clock"></i> Mở cửa: 8:00 - 23:00</li>
+                        <li><i class="fas fa-phone"></i> Hotline: 1900 6017</li>
+                        <li><i class="fas fa-envelope"></i> Email: hoidap@cgv.vn</li>
+                        <li><i class="fas fa-clock"></i> Working hours: 8:00 - 22:00 (Monday to Sunday, including Public
+                            Holidays) </li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Liên Kết</h3>
+                    <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Trang Chủ</a></li>
-                        <li><a href="#tour">Tour 360°</a></li>
-                        <li><a href="#booking">Đặt Vé</a></li>
-                        <li><a href="#contact">Liên Hệ</a></li>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#tour">Virtual Tour</a></li>
+                        <li><a href="#booking">Booking</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2024 CINEMAX 360°. Tất cả các quyền được bảo lưu.</p>
+                <p>&copy; 2025 CGV Cinemas. All rights reserved. | Virtual Experience</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Dữ liệu chi tiết các phòng
+        // Dữ liệu chi tiết các phòng với video
         const scenes = {
             lobby: {
-                title: "Sảnh Chính Rạp Chiếu Phim",
-                description: "Không gian sảnh chính sang trọng với thiết kế hiện đại, là nơi đón tiếp khách hàng trước khi bước vào các phòng chiếu. Sảnh chính được thiết kế với concept Hollywood cổ điển kết hợp công nghệ hiện đại, tạo ấn tượng ngay từ cái nhìn đầu tiên.",
-                image: "r1.jpg",
+                title: "CGV",
+                description: "Welcome to CGV's spectacular main lobby featuring modern architectural design and premium amenities. Experience the grand entrance with video that showcases our state-of-the-art facilities and welcoming atmosphere.",
+                video: "cgv.mp4",
                 specs: [
-                    { value: "200m²", label: "Diện Tích" },
-                    { value: "5", label: "Quầy Dịch Vụ" },
-                    { value: "50+", label: "Ghế Chờ" },
-                    { value: "24/7", label: "Chiếu Sáng" }
+                    { value: "250m²", label: "Total Area" },
+                    { value: "6", label: "Service Counters" },
+                    { value: "60+", label: "Waiting Seats" },
+                    { value: "4K", label: "Video Quality" }
                 ],
                 features: [
-                    "Sảnh chính rộng rãi với trần cao 5m, không gian thoáng đãng, thiết kế mở",
-                    "Quầy vé tự động hiện đại với 6 máy đặt vé nhanh, hỗ trợ nhiều ngôn ngữ",
-                    "Khu vực chờ với ghế sofa êm ái, phù hợp cho nhóm bạn và gia đình",
-                    "Quầy bắp nước với đa dạng đồ ăn thức uống cao cấp, phục vụ 24/7",
-                    "Hệ thống chiếu sáng LED tiết kiệm năng lượng, điều chỉnh ánh sáng thông minh",
-                    "Trang trí nội thất phong cách Hollywood sang trọng với hình ảnh các ngôi sao điện ảnh"
+                    "Spacious lobby with 5-meter high ceiling and open-concept design",
+                    "Modern automated ticketing system with 8 self-service kiosks",
+                    "Comfortable waiting area with premium sofas and lounge chairs",
+                    "Premium concession stand with gourmet snacks and beverages",
+                    "Energy-efficient LED lighting system with smart controls",
+                    "Hollywood-inspired interior design with celebrity artwork displays"
                 ],
-                hasSeating: false
+                hasSeating: false,
+                experienceText: "Experience CGV Premium Cinema:",
+                cinemaLocations: [
+                    "CGV Sư Vạn Hạnh",
+                    "CGV Aeon Bình Tân",
+                    "CGV SC Vivo City",
+                    "CGV Vincom Center Landmark 81",
+                    "CGV Vincom Metropolis Liễu Giai",
+                    "CGV Aeon Hà Đông"
+                ]
             },
             cinema1: {
-                title: "Phòng Chiếu Thường - Screen 1",
-                description: "Phòng chiếu tiêu chuẩn với công nghệ âm thanh Dolby Digital và hình ảnh sắc nét. Thiết kế tối ưu hóa tầm nhìn với 120 ghế ngồi được bố trí khoa học, mang đến trải nghiệm xem phim thoải mái nhất.",
-                image: "r2.jpg",
+                title: "IMAX",
+                description: "The world's most immersive movie experience, powered by a combination of the most advanced technology, IMAX will take you from the edge of your seat to the edge of reality",
+                video: "imax.mp4",
                 specs: [
-                    { value: "120", label: "Sức Chứa" },
-                    { value: "4K", label: "Độ Phân Giải" },
-                    { value: "Dolby", label: "Âm Thanh" },
-                    { value: "15m", label: "Màn Hình" }
+                    { value: "440", label: "Seat" },
+                    { value: "4K", label: "Resolution" },
+                    { value: "Sound", label: "Dolby Atmos" },
+                    { value: "21m", label: "Screen" }
                 ],
                 features: [
-                    "120 ghế ngồi tiêu chuẩn với khoảng cách tối ưu, không che khuất tầm nhìn",
-                    "Màn hình rộng 15m với công nghệ chiếu 4K, độ sáng cao, màu sắc chân thực",
-                    "Hệ thống âm thanh Dolby Digital 7.1, 32 loa công suất cao",
-                    "Ghế tựa lưng êm ái, tay vịn để ly thông minh, có thể gập lưng nhẹ",
-                    "Hệ thống cách âm tiêu chuẩn quốc tế, không bị ảnh hưởng bởi tiếng ồn bên ngoài",
-                    "Lối thoát hiểm rộng rãi, đảm bảo an toàn, hệ thống chiếu sáng khẩn cấp"
+                    "Floor-to-ceiling, wall-to-wall curved large-format screen for an immersive viewing experience",
+                    "Dual-projector system ensures ultra-bright, razor-sharp images.",
+                    "IMAX® DMR® technology enhances color, contrast, and clarity.",
+                    "Precision-tuned surround sound delivers crystal-clear, powerful audio.",
+                    "Comfortable stadium-style seating for optimal viewing from every angle.",
                 ],
                 hasSeating: true,
-                seatingCapacity: 120
+                seatingCapacity: 120,
+                experienceText: "Experience IMAX® at CGV:",
+                cinemaLocations: [
+                    "CGV Sư Vạn Hạnh",
+                    "CGV Aeon Bình Tân",
+                    "CGV SC Vivo City",
+                    "CGV Vincom Center Landmark 81",
+                    "CGV Vincom Metropolis Liễu Giai",
+                    "CGV Aeon Hà Đông"
+                ]
             },
             cinema2: {
-                title: "Phòng Chiếu Thường - Screen 2",
-                description: "Phòng chiếu rộng rãi với sức chứa lên đến 150 ghế, thiết kế tối ưu tầm nhìn và chất lượng âm thanh vượt trội. Phòng được trang bị công nghệ mới nhất với màn hình siêu rộng 18m.",
-                image: "r3.jpg",
+                title: "ULTRA 4DX",
+                description: "ScreenX expands the main screen beyond the frame onto two side-walls until the last row of seats. Pairing with unique multi-sensory effects of 4DX: motion seats, bubbles, wind, scent, lighting,...",
+                video: "ultra4D.mp4",
                 specs: [
-                    { value: "150", label: "Sức Chứa" },
-                    { value: "4K HDR", label: "Công Nghệ" },
-                    { value: "DTS:X", label: "Âm Thanh" },
-                    { value: "18m", label: "Màn Hình" }
+                    { value: "96", label: "Seats" },
+                    { value: "4DX", label: "Technology" },
+                    { value: "Multi-sensory", label: "Effects" },
                 ],
                 features: [
-                    "150 ghế ngồi với tầm nhìn không bị che khuất, thiết kế hình cung thông minh",
-                    "Màn hình siêu rộng 18m với công nghệ HDR, độ tương phản cao",
-                    "Hệ thống âm thanh DTS:X cho trải nghiệm 3D, 48 loa phân bố đều",
-                    "Ghế có thể điều chỉnh độ nghiêng nhẹ, đệm ngồi dày 15cm",
-                    "Hệ thống thông gió và điều hòa tự động, duy trì nhiệt độ ổn định 22°C",
-                    "Thiết kế phòng hình cung tối ưu âm học, không có tiếng vang"
+                    "Motion-enabled seats synchronized with on-screen action.",
+                    "Multi-sensory effects: wind, water, light, scents, and vibrations.",
+                    "ScreenX panoramic visuals extend the image to side walls for a 270° view.",
+                    "Perfect for action-packed, immersive cinematic experiences.",
                 ],
                 hasSeating: true,
-                seatingCapacity: 150
+                seatingCapacity: 150,
+                experienceText: "Experience ULTRA 4DX at CGV:",
+                cinemaLocations: [
+                    "CGV Sư Vạn Hạnh",
+                ]
             },
             vip: {
-                title: "Phòng Chiếu VIP",
-                description: "Trải nghiệm điện ảnh đẳng cấp với ghế da massage, dịch vụ phục vụ tận nơi và không gian riêng tư tuyệt đối. Chỉ 20 ghế cho trải nghiệm cá nhân hóa, hoàn hảo cho các buổi xem phim đặc biệt.",
-                image: "r4.webp",
+                title: "L'amour",
+                description: "For bringing the most state-of-the-art experience to customers, CGV would like to introduce L'amour bed cinema. With modern theater design, L'amour will surely offer once in a life time experience to movie lovers.",
+                video: "https://storage.googleapis.com/coverr-main/mp4/Coverr-Lulu.mp4",
                 specs: [
-                    { value: "20", label: "Ghế VIP" },
-                    { value: "Massage", label: "Tính Năng" },
-                    { value: "Atmos", label: "Âm Thanh" },
-                    { value: "Butler", label: "Dịch Vụ" }
+                    { value: "24", label: "Seats" },
+                    { value: "In-seat", label: "Service" },
                 ],
                 features: [
-                    "20 ghế da cao cấp với tính năng massage toàn thân, sưởi ấm mùa đông",
-                    "Dịch vụ phục vụ tận nơi trong suốt buổi chiếu, order bằng tablet cá nhân",
-                    "Hệ thống âm thanh Dolby Atmos 64 kênh, âm thanh vòm chân thực",
-                    "Ghế có thể ngả 180° thành giường nằm, chân kê thoải mái",
-                    "Bàn để đồ cá nhân và hệ thống sưởi ấm, làm mát tự động",
-                    "Không gian riêng tư với cửa cách âm, có thể tổ chức sự kiện riêng"
+                    "Premium recliner seating for maximum comfort and relaxation.",
+                    "Ideal for couples or private viewing with an intimate, cozy atmosphere.",
+                    "High-resolution projection with enhanced surround sound.",
+                    "Personalized in-seat service with food & beverages available.",
                 ],
                 hasSeating: true,
-                seatingCapacity: 20
-            },
-            cafe: {
-                title: "Khu Vực Cafe & Giải Khát",
-                description: "Không gian thư giãn với các loại đồ uống cao cấp và bánh ngọt tươi ngon, perfect cho những buổi hẹn hò hoặc thư giãn trước/sau khi xem phim. View trực tiếp ra sảnh chính.",
-                image: "R.jpg",
-                specs: [
-                    { value: "80m²", label: "Diện Tích" },
-                    { value: "30", label: "Chỗ Ngồi" },
-                    { value: "50+", label: "Thức Uống" },
-                    { value: "Wifi", label: "Miễn Phí" }
-                ],
-                features: [
-                    "Không gian mở với view ra sảnh chính, thiết kế hiện đại, trẻ trung",
-                    "Menu đa dạng với hơn 50 loại thức uống từ cà phê, trà, sinh tố đến cocktail",
-                    "Bánh ngọt tươi mỗi ngày từ tiệm bánh danh tiếng, đảm bảo chất lượng",
-                    "Wifi tốc độ cao miễn phí cho khách hàng, ổ cắm điện tại mỗi bàn",
-                    "Khu vực hút thuốc riêng biệt ngoài trời với view thành phố",
-                    "Nhân viên pha chế chuyên nghiệp, được đào tạo bài bản"
-                ],
-                hasSeating: false
+                seatingCapacity: 20,
+                experienceText: "Experience L'amour at CGV:",
+                cinemaLocations: [
+                    "CGV Hoàng Văn Thụ",
+                    "CGV Parkson Đồng Khởi",
+                    "CGV Vincom Royal City",
+                    "CGV Crescent Mall",
+                    "CGV Tràng Tiền Plaza",
+                    "CGV Vincom Metropolis Liễu Giai",
+
+                ]
             }
         };
-
-        // Khởi tạo biến
-        let viewer;
-
-        // Hàm khởi tạo viewer - KHÔNG CÓ ZOOM
-        function initViewer() {
-            viewer = pannellum.viewer('panorama-container', {
-                "default": {
-                    "firstScene": "lobby",
-                    "sceneFadeDuration": 1000,
-                    "autoLoad": true,
-                    "autoRotate": -1,
-                    "compass": false,
-                    "showZoomCtrl": false,
-                    "showFullscreenCtrl": false,
-                    "mouseZoom": false, // Tắt zoom chuột
-                    "minHfov": 100, // Giới hạn zoom
-                    "maxHfov": 100, // Cố định zoom
-                    "hfov": 100, // Zoom cố định
-                    "preview": "",
-                    "fallback": "Ảnh không thể tải. Vui lòng thử lại."
-                },
-                "scenes": {
-                    "lobby": {
-                        "title": scenes.lobby.title,
-                        "hfov": 100, // Zoom cố định
-                        "pitch": -5,
-                        "yaw": 0,
-                        "type": "equirectangular",
-                        "panorama": scenes.lobby.image,
-                        "hotSpots": [
-                            {
-                                "pitch": -8,
-                                "yaw": 120,
-                                "type": "scene",
-                                "text": "Đến Phòng Chiếu 1",
-                                "sceneId": "cinema1"
-                            },
-                            {
-                                "pitch": -6,
-                                "yaw": -120,
-                                "type": "scene",
-                                "text": "Đến Quán Cafe",
-                                "sceneId": "cafe"
-                            }
-                        ]
-                    },
-                    "cinema1": {
-                        "title": scenes.cinema1.title,
-                        "hfov": 100, // Zoom cố định
-                        "pitch": -3,
-                        "yaw": 180,
-                        "type": "equirectangular",
-                        "panorama": scenes.cinema1.image,
-                        "hotSpots": [
-                            {
-                                "pitch": -5,
-                                "yaw": 0,
-                                "type": "scene",
-                                "text": "Quay lại Sảnh Chính",
-                                "sceneId": "lobby"
-                            },
-                            {
-                                "pitch": -4,
-                                "yaw": -90,
-                                "type": "scene",
-                                "text": "Đến Phòng Chiếu 2",
-                                "sceneId": "cinema2"
-                            }
-                        ]
-                    },
-                    "cinema2": {
-                        "title": scenes.cinema2.title,
-                        "hfov": 100, // Zoom cố định
-                        "pitch": -2,
-                        "yaw": 0,
-                        "type": "equirectangular",
-                        "panorama": scenes.cinema2.image,
-                        "hotSpots": [
-                            {
-                                "pitch": -4,
-                                "yaw": 180,
-                                "type": "scene",
-                                "text": "Quay lại Phòng 1",
-                                "sceneId": "cinema1"
-                            }
-                        ]
-                    },
-                    "vip": {
-                        "title": scenes.vip.title,
-                        "hfov": 100, // Zoom cố định
-                        "pitch": -3,
-                        "yaw": 0,
-                        "type": "equirectangular",
-                        "panorama": scenes.vip.image,
-                        "hotSpots": [
-                            {
-                                "pitch": -5,
-                                "yaw": 180,
-                                "type": "scene",
-                                "text": "Quay lại Sảnh Chính",
-                                "sceneId": "lobby"
-                            }
-                        ]
-                    },
-                    "cafe": {
-                        "title": scenes.cafe.title,
-                        "hfov": 100, // Zoom cố định
-                        "pitch": -2,
-                        "yaw": 0,
-                        "type": "equirectangular",
-                        "panorama": scenes.cafe.image,
-                        "hotSpots": [
-                            {
-                                "pitch": -4,
-                                "yaw": 120,
-                                "type": "scene",
-                                "text": "Quay lại Sảnh Chính",
-                                "sceneId": "lobby"
-                            },
-                            {
-                                "pitch": -3,
-                                "yaw": -60,
-                                "type": "scene",
-                                "text": "Đến Phòng VIP",
-                                "sceneId": "vip"
-                            }
-                        ]
-                    }
-                }
-            });
-
-            // Sự kiện viewer
-            viewer.on('load', function() {
-                document.querySelector('.loading').style.display = 'none';
-            });
-
-            viewer.on('error', function(e) {
-                console.log('Lỗi tải ảnh:', e);
-                document.querySelector('.loading').innerHTML = `
-                    <div style="color: #ff6b6b;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                        <p>Không thể tải ảnh 360°</p>
-                        <p style="font-size: 0.9rem; margin-top: 5px;">Vui lòng kiểm tra đường dẫn ảnh</p>
-                    </div>
-                `;
-            });
-        }
 
         // Hàm tạo sơ đồ ghế ngồi
         function createSeatingPlan(capacity) {
             const seatingGrid = document.getElementById('seating-grid');
             seatingGrid.innerHTML = '';
-            
+
             let rows, cols;
             if (capacity === 20) { // VIP room
                 rows = 4;
@@ -1178,22 +1116,22 @@
                 rows = 10;
                 cols = 15;
             }
-            
+
             const rowLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'];
             const seatTypes = ['available', 'vip', 'couple', 'wheelchair', 'occupied'];
-            
+
             for (let row = 0; row < rows; row++) {
                 for (let col = 0; col < cols; col++) {
                     const seat = document.createElement('div');
                     const seatNumber = `${rowLabels[row]}${col + 1}`;
-                    
+
                     // Random seat type for demo
                     const randomType = seatTypes[Math.floor(Math.random() * seatTypes.length)];
-                    
+
                     seat.className = `seat ${randomType}`;
                     seat.textContent = seatNumber;
                     seat.dataset.seat = seatNumber;
-                    
+
                     // Add seat label for first row
                     if (row === 0) {
                         const label = document.createElement('div');
@@ -1201,7 +1139,7 @@
                         label.textContent = `${col + 1}`;
                         seat.appendChild(label);
                     }
-                    
+
                     // Add row label for first column
                     if (col === 0) {
                         const rowLabel = document.createElement('div');
@@ -1210,44 +1148,104 @@
                         rowLabel.style.left = '-20px';
                         seat.appendChild(rowLabel);
                     }
-                    
+
                     // Add click event for available seats
                     if (randomType === 'available' || randomType === 'vip') {
-                        seat.addEventListener('click', function() {
+                        seat.addEventListener('click', function () {
                             this.classList.toggle('selected');
                         });
                     }
-                    
+
                     seatingGrid.appendChild(seat);
                 }
             }
         }
 
+        // Hàm tạo danh sách rạp chiếu
+        function createCinemaLocations(locations) {
+            const cinemaLocationsContainer = document.getElementById('cinema-locations');
+            cinemaLocationsContainer.innerHTML = '';
+
+            const locationsGrid = document.createElement('div');
+            locationsGrid.className = 'locations-grid';
+
+            locations.forEach(location => {
+                const locationItem = document.createElement('div');
+                locationItem.className = 'location-item';
+                locationItem.innerHTML = `
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>${location}</div>
+                `;
+                locationsGrid.appendChild(locationItem);
+            });
+
+            cinemaLocationsContainer.appendChild(locationsGrid);
+        }
+
+        // Hàm tạo sơ đồ ghế ngồi container
+        function createSeatingPlanContainer() {
+            const seatingPlan = document.getElementById('seating-plan');
+            seatingPlan.innerHTML = `
+                <h3 class="seating-title">DETAILED SEATING PLAN</h3>
+                <div class="screen">SCREEN</div>
+                <div class="seating-grid" id="seating-grid"></div>
+                <div class="seat-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2ecc71;"></div>
+                        <span>Standard</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ffd700;"></div>
+                        <span>VIP</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #9b59b6;"></div>
+                        <span>SWEETBOX</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #e12615;"></div>
+                        <span>Selected</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #7f8c8d;"></div>
+                        <span>Reserved</span>
+                    </div>
+                </div>
+            `;
+        }
+
         // Hàm cập nhật thông tin phòng
         function updateRoomInfo(sceneId) {
             const scene = scenes[sceneId];
-            
+
             document.getElementById('current-location').textContent = scene.title;
             document.getElementById('location-desc').textContent = scene.description;
-            
+            document.getElementById('experience-text').textContent = scene.experienceText;
+
             // Cập nhật specs grid
-            const specsGrid = document.querySelector('.specs-grid');
+            const specsGrid = document.getElementById('specs-grid');
             specsGrid.innerHTML = scene.specs.map(spec => `
                 <div class="spec-item">
                     <div class="spec-value">${spec.value}</div>
                     <div class="spec-label">${spec.label}</div>
                 </div>
             `).join('');
-            
+
             // Cập nhật features list
             const featuresList = document.getElementById('features-list');
             featuresList.innerHTML = scene.features.map(feature => `
                 <li>${feature}</li>
             `).join('');
-            
+
+            // Cập nhật danh sách rạp chiếu
+            createCinemaLocations(scene.cinemaLocations);
+
             // Hiển thị/ẩn sơ đồ ghế ngồi
             const seatingPlan = document.getElementById('seating-plan');
             if (scene.hasSeating) {
+                if (!document.getElementById('seating-grid')) {
+                    createSeatingPlanContainer();
+                }
                 seatingPlan.style.display = 'block';
                 createSeatingPlan(scene.seatingCapacity);
             } else {
@@ -1256,24 +1254,89 @@
         }
 
         // Khởi tạo khi DOM ready
-        document.addEventListener('DOMContentLoaded', function() {
-            initViewer();
-            updateRoomInfo('lobby');
-            
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('background-video');
+            const loading = document.getElementById('video-loading');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            const sceneBtns = document.querySelectorAll('.scene-btn');
+
+            // Ẩn loading khi video đã load
+            video.addEventListener('loadeddata', function () {
+                loading.style.display = 'none';
+            });
+
+            // Xử lý lỗi video
+            video.addEventListener('error', function () {
+                loading.innerHTML = `
+                    <div style="color: #ff6b6b;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                        <p>Không thể tải video</p>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Vui lòng kiểm tra kết nối internet</p>
+                    </div>
+                `;
+            });
+
+            // Fullscreen control
+            fullscreenBtn.addEventListener('click', function () {
+                if (!document.fullscreenElement) {
+                    video.parentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+
+            // Scene navigation
+            sceneBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const sceneId = this.getAttribute('data-scene');
+                    const scene = scenes[sceneId];
+
+                    // Update active button
+                    sceneBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Show loading
+                    loading.style.display = 'block';
+
+                    // Change video source
+                    video.src = scene.video;
+                    video.load();
+                    video.play().catch(e => {
+                        console.log('Auto-play prevented:', e);
+                    });
+
+                    // Update room info
+                    updateRoomInfo(sceneId);
+                });
+            });
+
+            // Video events để ẩn loading
+            video.addEventListener('canplay', function () {
+                loading.style.display = 'none';
+            });
+
+            video.addEventListener('waiting', function () {
+                loading.style.display = 'block';
+            });
+
+            video.addEventListener('playing', function () {
+                loading.style.display = 'none';
+            });
+
             // Navigation giữa các pages
             document.querySelectorAll('[data-page]').forEach(btn => {
-                btn.addEventListener('click', function(e) {
+                btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     const pageId = this.getAttribute('data-page');
-                    
+
                     // Ẩn tất cả pages
                     document.querySelectorAll('.page').forEach(page => {
                         page.classList.remove('active');
                     });
-                    
+
                     // Hiện page được chọn
                     document.getElementById(pageId).classList.add('active');
-                    
+
                     // Cập nhật active nav
                     document.querySelectorAll('.nav-btn').forEach(nav => {
                         nav.classList.remove('active');
@@ -1281,55 +1344,11 @@
                     this.classList.add('active');
                 });
             });
-            
-            // Navigation giữa các scenes
-            document.querySelectorAll('[data-scene]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const sceneId = this.dataset.scene;
-                    
-                    document.querySelector('.loading').style.display = 'block';
-                    document.querySelectorAll('[data-scene]').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    viewer.loadScene(sceneId);
-                    updateRoomInfo(sceneId);
-                });
-            });
-            
-            // Control buttons - CHỈ CÒN RESET VÀ FULLSCREEN
-            document.getElementById('reset-view').addEventListener('click', () => {
-                viewer.lookAt(0, 0, 100);
-            });
 
-            document.getElementById('fullscreen').addEventListener('click', () => {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen();
-                } else {
-                    document.exitFullscreen();
-                }
-            });
-            
-            // Sự kiện thay đổi scene
-            viewer.on('scenechange', function(e) {
-                const sceneId = e;
-                document.querySelectorAll('[data-scene]').forEach(btn => {
-                    btn.classList.toggle('active', btn.dataset.scene === sceneId);
-                });
-                
-                updateRoomInfo(sceneId);
-                document.querySelector('.loading').style.display = 'none';
-            });
-
-            // Sự kiện fullscreen
-            document.addEventListener('fullscreenchange', function() {
-                const fullscreenBtn = document.getElementById('fullscreen');
-                if (document.fullscreenElement) {
-                    fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-                } else {
-                    fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
-                }
-            });
+            // Khởi tạo thông tin phòng đầu tiên
+            updateRoomInfo('lobby');
         });
     </script>
 </body>
+
 </html>
