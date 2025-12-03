@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/assets/logocgv-D5f6eB9s.jpg">
+    <title>CGV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" crossorigin href="/assets/index-WE-Tk-Cd.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-film"></i>
+                    CGV
+                </div>
+                <div class="main-nav">
+                    <a href="#home" class="nav-btn active" data-page="home">
+                        <i class="fas fa-home"></i> HOME
+                    </a>
+                    <a href="#tour" class="nav-btn" data-page="tour">
+                        <i class="fas fa-vr-cardboard"></i> Virtual Tour
+                    </a>
+                    <a href="#menu" class="nav-btn" data-page="menu">
+                        <i class="fas fa-utensils"></i> F&B MENU
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="home-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">BEYOND CINEMA</h1>
+                    <p class="hero-subtitle">
+                        Explore CGV's premium cinema with virtual tour. Experience every realistic perspective as
+                        if you were actually standing inside the theater.
+                    </p>
+                    <a href="#tour" class="cta-button" data-page="tour">
+                        <i class="fas fa-play-circle"></i> Start
+                    </a>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <h2 class="section-title">Why choose CGV?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h3 class="feature-title">TECHNOLOGY</h3>
+                        <p class="feature-desc">
+                            The advanced integration of 3S (Screen, Sound, Seat) amplifies immersive cinematic
+                            experience
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 class="feature-title">CONCEPT</h3>
+                        <p class="feature-desc">
+                            Enjoy a world-class cinematic experience in our themed auditoriums featuring unique themes
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fa-solid fa-wrench"></i>
+                        </div>
+                        <h3 class="feature-title">SERVICE</h3>
+                        <p class="feature-desc">
+                            Enjoy in-seat dining with a diverse, high-quality menu served by our professional staff
+                        </p>
+                    </div>
+                    <!-- <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3 class="feature-title">F&B EXPERIENCE</h3>
+                        <p class="feature-desc">
+                            Premium food and beverage menu featuring gourmet snacks, drinks, and in-seat dining options
+                        </p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tour Page -->
+    <div id="tour" class="page">
+        <div class="container">
+            <div class="scene-nav">
+                <button class="scene-btn active" data-scene="lobby">
+                    <i class="fas fa-door-open"></i> Main Lobby
+                </button>
+                <button class="scene-btn" data-scene="cinema1">
+                    <i class="fas fa-film"></i> IMAX
+                </button>
+                <button class="scene-btn" data-scene="cinema2">
+                    <i class="fas fa-film"></i> ULTRA 4DX
+                </button>
+                <button class="scene-btn" data-scene="vip">
+                    <i class="fas fa-crown"></i> L'amour VIP
+                </button>
+            </div>
+
+            <!-- Slideshow for Lobby -->
+            <div class="slideshow-section" id="lobby-slideshow">
+                <div class="slideshow-container">
+                    <div class="slideshow">
+                        <div class="slide active">
+                            <img src="/assets/imgcgv1-BiPh98al.jpg" alt="CGV Lobby 1">
+                        </div>
+                        <div class="slide">
+                            <img src="/assets/imgcgv2-C1M_rdSg.jpg" alt="CGV Lobby 2">
+                        </div>
+                        <div class="slide">
+                            <img src="/assets/imgcgv3-Cje12gAk.jpg" alt="CGV Lobby 3">
+                        </div>
+                        <!-- <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="CGV Lobby 4">
+                        </div> -->
+                    </div>
+                    <div class="slideshow-controls">
+                        <button class="slideshow-btn prev-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slideshow-btn next-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="slideshow-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Section for IMAX and 4DX -->
+            <div class="video-section" id="cinema-video" style="display: none;">
+                <div class="video-container">
+                    <div id="youtube-player"></div>
+                    <div class="video-overlay">
+                        <div class="loading" id="video-loading">
+                            <div class="spinner"></div>
+                            <p>Loading video...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slideshow for L'amour VIP -->
+            <div class="slideshow-section" id="vip-slideshow" style="display: none;">
+                <div class="slideshow-container">
+                    <div class="slideshow">
+                        <div class="slide active">
+                            <img src="/assets/imgl1-DHKnI16P.jpg" alt="L'amour VIP 1">
+                        </div>
+                        <div class="slide">
+                            <img src="/assets/imgl2-BkGfrKO5.jpg" alt="L'amour VIP 2">
+                        </div>
+                        <div class="slide">
+                            <img src="/assets/imgl3-ChFQ02Z-.jpg" alt="L'amour VIP 3">
+                        </div>
+                        <!-- <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="L'amour VIP 4">
+                        </div> -->
+                    </div>
+                    <div class="slideshow-controls">
+                        <button class="slideshow-btn prev-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="slideshow-btn next-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="slideshow-dots">
+                        <span class="dot active" data-slide="0"></span>
+                        <span class="dot" data-slide="1"></span>
+                        <span class="dot" data-slide="2"></span>
+                        <span class="dot" data-slide="3"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h2 class="location-title" id="current-location">
+                    <i class="fas fa-door-open"></i> CGV Main Lobby
+                </h2>
+                <p class="location-desc" id="location-desc">
+                    Welcome to CGV's spectacular main lobby featuring modern architectural design and premium amenities.
+                    Experience the grand entrance with our photo gallery showcasing our state-of-the-art facilities.
+                </p>
+
+                <div class="specs-grid" id="specs-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <h3 style="color: #e12615; margin: 20px 0 12px; text-align: center;">HIGHLIGHT FEATURES</h3>
+                <ul class="features-list" id="features-list">
+                    <!-- Will be populated by JavaScript -->
+                </ul>
+
+                <!-- Seating Plan -->
+                <div class="seating-plan" id="seating-plan" style="display: none;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <div class="booking-section">
+                    <h3 class="booking-title">BOOK NOW TO EXPERIENCE</h3>
+                    <p style="margin-bottom: 15px; opacity: 0.9; font-size: 0.95rem;" id="experience-text">
+                        Experience CGV Premium Cinema:
+                    </p>
+
+                    <!-- Cinema locations grid -->
+                    <div class="cinema-locations" id="cinema-locations" style="margin: 20px 0;">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-ticket-alt"></i> Book Tickets Now
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-calendar"></i> View Movie Schedule
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- F&B Menu Page -->
+    <div id="menu" class="page">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fas fa-utensils"></i> F&B MENU
+            </h2>
+
+            <div class="menu-slideshow-section">
+                <div class="menu-slideshow-container">
+                    <div class="menu-slideshow">
+                        <div class="menu-slide active">
+                            <img src="/assets/menu1-BSa2gU7f.jpg"
+                                alt="CGV Food Menu">
+                            
+                        </div>
+                        <div class="menu-slide">
+                            <img src="/assets/menu2-DCx1T_-5.jpg"
+                                alt="CGV Beverage Menu">
+                            
+                        </div>
+                    </div>
+                    <div class="menu-slideshow-controls">
+                        <button class="menu-slideshow-btn prev-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="menu-slideshow-btn next-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="menu-slideshow-dots">
+                        <span class="menu-dot active" data-slide="0"></span>
+                        <span class="menu-dot" data-slide="1"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <h2 class="location-title">
+                    <i class="fas fa-utensils"></i> CGV PREMIUM DINING
+                </h2>
+                <p class="location-desc">
+                    Discover our exquisite food and beverage menu featuring gourmet snacks, premium drinks,
+                    and in-seat dining options. Enjoy a complete cinematic experience with our culinary delights.
+                </p>
+
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <div class="spec-value">50+</div>
+                        <div class="spec-label">Menu Items</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-value">Gourmet</div>
+                        <div class="spec-label">Quality</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-value">In-Seat</div>
+                        <div class="spec-label">Service</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-value">All Day</div>
+                        <div class="spec-label">Available</div>
+                    </div>
+                </div>
+
+                <h3 style="color: #e12615; margin: 20px 0 12px; text-align: center;">MENU CATEGORIES</h3>
+                <ul class="features-list">
+                    <li><i class="fas fa-popcorn"></i> Premium Popcorn & Snacks</li>
+                    <li><i class="fas fa-cocktail"></i> Signature Drinks & Cocktails</li>
+                    <li><i class="fas fa-hamburger"></i> Gourmet Burgers & Sandwiches</li>
+                    <li><i class="fas fa-pizza-slice"></i> Pizzas & Hot Foods</li>
+                    <li><i class="fas fa-ice-cream"></i> Desserts & Ice Cream</li>
+                    <li><i class="fas fa-coffee"></i> Coffee & Beverages</li>
+                    <li><i class="fas fa-wine-glass-alt"></i> Wine & Beer Selection</li>
+                    <li><i class="fas fa-concierge-bell"></i> In-Seat Dining Service</li>
+                </ul>
+
+                <!-- <div class="booking-section">
+                    <h3 class="booking-title">ORDER AT CGV</h3>
+                    <p style="margin-bottom: 15px; opacity: 0.9; font-size: 0.95rem;">
+                        Available at all CGV theaters. Pre-order online or order in-theater for the best experience.
+                    </p>
+
+                    <div class="btn-group">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-mobile-alt"></i> Pre-order Online
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-info-circle"></i> Menu Details
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CGV CINEMAS</h3>
+                    <p style="opacity: 0.8; font-size: 0.9rem; line-height: 1.5;">
+                        Enjoy the best cinematic experience at CGV theaters nationwide. Find all showtimes and the
+                        latest movie trailers for CGV Cinemas Vietnam here.
+                    </p>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> Hotline: 1900 6017</li>
+                        <li><i class="fas fa-envelope"></i> Email: hoidap@cgv.vn</li>
+                        <li><i class="fas fa-clock"></i> Working hours: 8:00 - 22:00 (Monday to Sunday, including Public
+                            Holidays)</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home" data-page="home">Home</a></li>
+                        <li><a href="#tour" data-page="tour">Virtual Tour</a></li>
+                        <li><a href="#menu" data-page="menu">F&B Menu</a></li>
+                        <li><a href="#booking">Booking</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-tiktok"></i> TikTok</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 CGV Cinemas. All rights reserved. | Virtual Experience Platform</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="src/script.js"></script>
+</body>
+
+</html>
