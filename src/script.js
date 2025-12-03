@@ -1,24 +1,12 @@
 // Dữ liệu chi tiết các phòng
 const scenes = {
     lobby: {
-        title: "CGV Main Lobby",
-        description: "Welcome to CGV's spectacular main lobby featuring modern architectural design and premium amenities. Experience the grand entrance with our photo gallery showcasing our state-of-the-art facilities.",
+        title: "",
+        description: "",
         type: "slideshow",
         slideshowId: "lobby-slideshow",
-        specs: [
-            { value: "250m²", label: "Total Area" },
-            { value: "6", label: "Service Counters" },
-            { value: "60+", label: "Waiting Seats" },
-            { value: "4K", label: "Screens" }
-        ],
-        features: [
-            "Spacious lobby with 5-meter high ceiling and open-concept design",
-            "Modern automated ticketing system with 8 self-service kiosks",
-            "Comfortable waiting area with premium sofas and lounge chairs",
-            "Premium concession stand with gourmet snacks and beverages",
-            "Energy-efficient LED lighting system with smart controls",
-            "Hollywood-inspired interior design with celebrity artwork displays"
-        ],
+        specs: [],
+        features: [],
         hasSeating: false,
         experienceText: "Experience CGV Premium Cinema:",
         cinemaLocations: [
@@ -119,6 +107,10 @@ const scenes = {
 let youtubePlayer;
 let currentSlideIndex = { "lobby-slideshow": 0, "vip-slideshow": 0 };
 let slideIntervals = {};
+
+// Menu slideshow variables
+let menuCurrentSlide = 0;
+let menuSlideInterval;
 
 // Hàm khởi tạo YouTube Player
 function onYouTubeIframeAPIReady() {
@@ -258,6 +250,92 @@ function startSlideshow(slideshowId) {
 function stopSlideshow(slideshowId) {
     if (slideIntervals[slideshowId]) {
         clearInterval(slideIntervals[slideshowId]);
+    }
+}
+
+// Menu slideshow functions - ĐÃ ĐƯỢC FIX
+function initMenuSlideshow() {
+    const slides = document.querySelectorAll('.menu-slide');
+    const dots = document.querySelectorAll('.menu-dot');
+
+    // Reset all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    // Set active slide and dot
+    if (slides.length > 0) {
+        slides[menuCurrentSlide].classList.add('active');
+    }
+    if (dots.length > 0) {
+        dots[menuCurrentSlide].classList.add('active');
+    }
+}
+
+function nextMenuSlide() {
+    const slides = document.querySelectorAll('.menu-slide');
+    const dots = document.querySelectorAll('.menu-dot');
+
+    if (slides.length === 0) return;
+
+    slides[menuCurrentSlide].classList.remove('active');
+    if (dots.length > 0) {
+        dots[menuCurrentSlide].classList.remove('active');
+    }
+
+    menuCurrentSlide = (menuCurrentSlide + 1) % slides.length;
+
+    slides[menuCurrentSlide].classList.add('active');
+    if (dots.length > 0) {
+        dots[menuCurrentSlide].classList.add('active');
+    }
+}
+
+function prevMenuSlide() {
+    const slides = document.querySelectorAll('.menu-slide');
+    const dots = document.querySelectorAll('.menu-dot');
+
+    if (slides.length === 0) return;
+
+    slides[menuCurrentSlide].classList.remove('active');
+    if (dots.length > 0) {
+        dots[menuCurrentSlide].classList.remove('active');
+    }
+
+    menuCurrentSlide = (menuCurrentSlide - 1 + slides.length) % slides.length;
+
+    slides[menuCurrentSlide].classList.add('active');
+    if (dots.length > 0) {
+        dots[menuCurrentSlide].classList.add('active');
+    }
+}
+
+function goToMenuSlide(slideIndex) {
+    const slides = document.querySelectorAll('.menu-slide');
+    const dots = document.querySelectorAll('.menu-dot');
+
+    if (slides.length === 0) return;
+
+    slides[menuCurrentSlide].classList.remove('active');
+    if (dots.length > 0) {
+        dots[menuCurrentSlide].classList.remove('active');
+    }
+
+    menuCurrentSlide = slideIndex;
+
+    slides[menuCurrentSlide].classList.add('active');
+    if (dots.length > 0) {
+        dots[menuCurrentSlide].classList.add('active');
+    }
+}
+
+function startMenuSlideshow() {
+    stopMenuSlideshow();
+    menuSlideInterval = setInterval(nextMenuSlide, 4000);
+}
+
+function stopMenuSlideshow() {
+    if (menuSlideInterval) {
+        clearInterval(menuSlideInterval);
     }
 }
 
@@ -464,78 +542,9 @@ function updateRoomInfo(sceneId) {
     }
 }
 
-// Thêm biến toàn cục cho menu slideshow
-let menuCurrentSlide = 0;
-let menuSlideInterval;
-
-// Hàm cho menu slideshow
-function initMenuSlideshow() {
-    const slides = document.querySelectorAll('.menu-slide');
-    const dots = document.querySelectorAll('.menu-dot');
-
-    // Reset all slides and dots
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-
-    // Set active slide and dot
-    slides[menuCurrentSlide].classList.add('active');
-    dots[menuCurrentSlide].classList.add('active');
-}
-
-function nextMenuSlide() {
-    const slides = document.querySelectorAll('.menu-slide');
-    const dots = document.querySelectorAll('.menu-dot');
-
-    slides[menuCurrentSlide].classList.remove('active');
-    dots[menuCurrentSlide].classList.remove('active');
-
-    menuCurrentSlide = (menuCurrentSlide + 1) % slides.length;
-
-    slides[menuCurrentSlide].classList.add('active');
-    dots[menuCurrentSlide].classList.add('active');
-}
-
-function prevMenuSlide() {
-    const slides = document.querySelectorAll('.menu-slide');
-    const dots = document.querySelectorAll('.menu-dot');
-
-    slides[menuCurrentSlide].classList.remove('active');
-    dots[menuCurrentSlide].classList.remove('active');
-
-    menuCurrentSlide = (menuCurrentSlide - 1 + slides.length) % slides.length;
-
-    slides[menuCurrentSlide].classList.add('active');
-    dots[menuCurrentSlide].classList.add('active');
-}
-
-function goToMenuSlide(slideIndex) {
-    const slides = document.querySelectorAll('.menu-slide');
-    const dots = document.querySelectorAll('.menu-dot');
-
-    slides[menuCurrentSlide].classList.remove('active');
-    dots[menuCurrentSlide].classList.remove('active');
-
-    menuCurrentSlide = slideIndex;
-
-    slides[menuCurrentSlide].classList.add('active');
-    dots[menuCurrentSlide].classList.add('active');
-}
-
-function startMenuSlideshow() {
-    stopMenuSlideshow();
-    menuSlideInterval = setInterval(nextMenuSlide, 4000);
-}
-
-function stopMenuSlideshow() {
-    if (menuSlideInterval) {
-        clearInterval(menuSlideInterval);
-    }
-}
-
-
 // Khởi tạo khi DOM ready
 document.addEventListener('DOMContentLoaded', function () {
-    // Setup menu slideshow
+    // Setup menu slideshow (3 slides)
     const menuPrevBtn = document.querySelector('.menu-slideshow-btn.prev-btn');
     const menuNextBtn = document.querySelector('.menu-slideshow-btn.next-btn');
     const menuDots = document.querySelectorAll('.menu-dot');
@@ -567,11 +576,8 @@ document.addEventListener('DOMContentLoaded', function () {
         menuSlideshowContainer.addEventListener('mouseenter', stopMenuSlideshow);
         menuSlideshowContainer.addEventListener('mouseleave', startMenuSlideshow);
     }
-    const videoLoading = document.getElementById('video-loading');
-    const menuLoading = document.getElementById('menu-loading');
-    const sceneBtns = document.querySelectorAll('#tour .scene-btn');
 
-    // Setup slideshow controls
+    // Setup slideshow controls cho lobby và vip
     function setupSlideshowControls(slideshowId) {
         const prevBtn = document.querySelector(`#${slideshowId} .prev-btn`);
         const nextBtn = document.querySelector(`#${slideshowId} .next-btn`);
@@ -604,6 +610,7 @@ document.addEventListener('DOMContentLoaded', function () {
     setupSlideshowControls('vip-slideshow');
 
     // Scene navigation cho Virtual Tour
+    const sceneBtns = document.querySelectorAll('#tour .scene-btn');
     sceneBtns.forEach(btn => {
         btn.addEventListener('click', function () {
             const sceneId = this.getAttribute('data-scene');
@@ -667,27 +674,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Khởi tạo thông tin phòng đầu tiên
     updateRoomInfo('lobby');
 
-    // Ẩn loading khi hình ảnh menu đã load
-    const menuImage = document.getElementById('menu-image');
-    if (menuImage) {
-        menuImage.onload = function () {
-            if (menuLoading) menuLoading.style.display = 'none';
-        };
-        menuImage.onerror = function () {
-            if (menuLoading) {
-                menuLoading.innerHTML = `
-                    <div style="color: #ff6b6b;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 10px;"></i>
-                        <p>Cannot load menu image</p>
-                    </div>
-                `;
-            }
-        };
-    }
-
     // Thêm hiệu ứng loading
     window.addEventListener('load', function () {
+        const videoLoading = document.getElementById('video-loading');
         if (videoLoading) videoLoading.style.display = 'none';
-        if (menuLoading) menuLoading.style.display = 'none';
     });
-});
+});F
