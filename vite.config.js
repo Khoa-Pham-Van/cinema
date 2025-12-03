@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/',  // QUAN TRỌNG: Để base là root cho Netlify
+  base: '/xemphimne',  
   server: {
     port: 3000,
     open: true

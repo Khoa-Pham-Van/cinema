@@ -1,4 +1,4 @@
-    {
+{
   "name": "cgv-virtual-tour",
   "version": "1.0.0",
   "type": "module",
@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "vite": "^5.0.0"
   }
 }
